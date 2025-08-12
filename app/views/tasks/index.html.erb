@@ -1,0 +1,17 @@
+<h1>My Tasks</h1>
+<%= link_to "Add Task", new_task_path, class: "btn btn-secondary" %>
+<% @tasks.each do |task| %>
+    <p>
+    <%= check_box_tag "completed", "1", task.completed, disabled: true %>
+    <%= link_to task_path(task) do %>
+
+        <%= task.title %>
+<% end %>
+
+<%= link_to "Delete",
+        task_path(task),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class: "btn btn-danger btn-sm ms-2" %>
+
+</p>
+<% end %>
